@@ -18,18 +18,20 @@ public class ResultsTableComponent {
     }
 
     public ResultsTableComponent checkResult(String firstNameUser, String lastNameUser, String email, String gender,
-                                             String phone, String dayOfbirth, String monthOfbirth, String yearOfBirth) {
+                                             String phone, String dayOfbirth, String monthOfbirth, String yearOfBirth,
+                                             String subjectOne, String subjectSecond, String hobbyOne, String hobbySecond,
+                                             String address, String state, String city, String file) {
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstNameUser + " " + lastNameUser));
         $x("//td[text()='Student Email']").parent().shouldHave(text(email));
         $x("//td[text()='Gender']").parent().shouldHave(text(gender));
         $x("//td[text()='Mobile']").parent().shouldHave(text(phone));
         $x("//td[text()='Date of Birth']").parent().shouldHave(text(dayOfbirth + " " + monthOfbirth + ","
                 + yearOfBirth));
-        $x("//td[text()='Subjects']").parent().shouldHave(text("Economics, Biology"));
-        $x("//td[text()='Hobbies']").parent().shouldHave(text("Sports"));
-        $x("//td[text()='Picture']").parent().shouldHave(text("testcat.png"));
-        $x("//td[text()='Address']").parent().shouldHave(text("Russia, Spb, 21"));
-        $x("//td[text()='State and City']").parent().shouldHave(text("Uttar Pradesh Lucknow"));
+        $x("//td[text()='Subjects']").parent().shouldHave(text(subjectOne + ", " + subjectSecond));
+        $x("//td[text()='Hobbies']").parent().shouldHave(text(hobbyOne + ", " + hobbySecond));
+        $x("//td[text()='Picture']").parent().shouldHave(text(file));
+        $x("//td[text()='Address']").parent().shouldHave(text(address));
+        $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
 
         return this;
     }

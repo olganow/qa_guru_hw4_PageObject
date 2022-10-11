@@ -14,12 +14,6 @@ public class RegistrationFormPage {
     private CalendarComponent calendarComponent = new CalendarComponent();
     private ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
     private File file = new File("src/test/resources/testcat.png");
-    private final static String TITLE_TEXT = "Thanks for submitting the form";
-    private String
-            yearOfBirth = "1998",
-            monthOfbirth = "May",
-            dayOfbirth = "16";
-
     // Element
     private SelenideElement
             firstNameInput = $("#firstName"),
@@ -28,9 +22,6 @@ public class RegistrationFormPage {
             genderInput = $("#genterWrapper"),
             phoneInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            monthOfBirthInput = $(".react-datepicker__month-select"),
-            yearOfBirthInput = $(".react-datepicker__year-select"),
-            dayOfBirthInput = $(".react-datepicker__day--0" + dayOfbirth),
             subjectInput = $("#subjectsInput"),
             hobbyInput = $("#hobbiesWrapper"),
             pictureUpload = $x("//input[@id='uploadPicture']"),
@@ -41,7 +32,7 @@ public class RegistrationFormPage {
 
 
     //Actions
-    public RegistrationFormPage OpenPage() {
+    public RegistrationFormPage openPage() {
         open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('footer').remove()");
@@ -91,21 +82,21 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setSubject() {
-        subjectInput.setValue("Economics").pressEnter();
-        subjectInput.setValue("Biology").scrollTo().pressEnter();
+    public RegistrationFormPage setSubject(String subjectOne, String subjectSecond) {
+        subjectInput.setValue(subjectOne).pressEnter();
+        subjectInput.setValue(subjectSecond).scrollTo().pressEnter();
 
         return this;
     }
 
-    public RegistrationFormPage setHobby() {
-        hobbyInput.$(byText("Sports")).click();
-        hobbyInput.$(byText("Music")).click();
+    public RegistrationFormPage setHobby(String hobbyOne, String hobbySecond) {
+        hobbyInput.$(byText(hobbyOne)).click();
+        hobbyInput.$(byText(hobbySecond)).click();
 
         return this;
     }
 
-    public RegistrationFormPage uploadPicturest() {
+    public RegistrationFormPage uploadPicture() {
         pictureUpload.uploadFile(file);
 
         return this;
@@ -117,14 +108,14 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setState() {
-        stateInput.setValue("Uttar Pradesh").pressEnter();
+    public RegistrationFormPage setState(String state) {
+        stateInput.setValue(state).pressEnter();
 
         return this;
     }
 
-    public RegistrationFormPage setCity() {
-        cityInput.setValue("Lucknow").pressEnter();
+    public RegistrationFormPage setCity(String city) {
+        cityInput.setValue(city).pressEnter();
 
         return this;
     }
@@ -142,9 +133,12 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage checkResult(String firstNameUser, String lastNameUser, String email, String gender,
-                                            String phone, String dayOfbirth, String monthOfbirth, String yearOfBirth) {
+                                            String phone, String dayOfbirth, String monthOfbirth, String yearOfBirth,
+                                            String subjectOne, String subjectSecond, String  hobbyOne, String hobbySecond,
+                                            String address, String state, String city, String file) {
         resultsTableComponent.checkResult(firstNameUser, lastNameUser, email, gender,
-                phone, dayOfbirth, monthOfbirth, yearOfBirth);
+                phone, dayOfbirth, monthOfbirth, yearOfBirth, subjectOne,  subjectSecond, hobbyOne, hobbySecond,
+                address, state, city, file);
 
         return this;
     }

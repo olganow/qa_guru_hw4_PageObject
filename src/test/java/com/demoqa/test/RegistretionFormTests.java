@@ -19,8 +19,14 @@ public class RegistretionFormTests {
             yearOfBirth = "1998",
             monthOfbirth = "May",
             dayOfbirth = "16",
-            address = "Russia, Spb, 21";
-    File file = new File("src/test/resources/testcat.png");
+            address = "Russia, Spb, 21",
+            subjectOne = "Economics",
+            subjectSecond = "Biology",
+            hobbyOne = "Sports",
+            hobbySecond = "Music",
+            state = "Uttar Pradesh",
+            city = "Lucknow",
+            file = "testcat.png";
 
 
     @BeforeAll
@@ -33,26 +39,27 @@ public class RegistretionFormTests {
     @Test
     void successfulSubmitFormTest() {
         registrationFormPage
-                .OpenPage()
+                .openPage()
                 .setFirstName(firstNameUser)
                 .setLastName(lastNameUser)
                 .setEmail(email)
                 .setGender(gender)
                 .setPhone(phone)
                 .setDateOfBirth(dayOfbirth, monthOfbirth, yearOfBirth)
-                .setSubject()
-                .setHobby()
-                .uploadPicturest()
+                .setSubject(subjectOne, subjectSecond)
+                .setHobby(hobbyOne, hobbySecond)
+                .uploadPicture()
                 .setAddress(address)
-                .setState()
-                .setCity()
+                .setState(state)
+                .setCity(city)
                 .clickSubmit();
 
 
         registrationFormPage
                 .checkResultsTableVisible();
         registrationFormPage.checkResult(firstNameUser, lastNameUser, email, gender,
-                phone, dayOfbirth, monthOfbirth, yearOfBirth);
+                phone, dayOfbirth, monthOfbirth, yearOfBirth, subjectOne, subjectSecond, hobbyOne, hobbySecond,
+                address, state, city, file);
 
     }
 
